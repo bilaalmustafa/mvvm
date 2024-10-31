@@ -22,3 +22,8 @@ class UnauthorisedException extends AppException {
     String? message,
   ]) : super(message, 'Invalid request'); 
 }
+class InvalidInputException extends AppException {
+  InvalidInputException([
+    String? message,
+  ]) : super(message, 'Invalid request'); 
+}

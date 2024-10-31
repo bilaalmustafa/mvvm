@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm/utils/routes/routes.dart';
+import 'package:mvvm/utils/routes/routes_name.dart';
+import 'package:mvvm/view/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomPage(title: 'Flutter Demo Home Page'),
+    initialRoute: RoutesName.login,
+    onGenerateRoute: Routes.generateRoute,
     );
   }
 }
