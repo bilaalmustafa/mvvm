@@ -5,21 +5,20 @@ import 'package:mvvm/utils/util.dart';
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class Login_Screen extends StatefulWidget {
-  const Login_Screen({super.key});
+class Signup_Screen extends StatefulWidget {
+  const Signup_Screen({super.key});
 
   @override
-  State<Login_Screen> createState() => _LoginScreenState();
+  State<Signup_Screen> createState() => _SignUPViewState();
 }
 
-class _LoginScreenState extends State<Login_Screen> {
+class _SignUPViewState extends State<Signup_Screen> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ValueNotifier<bool> obsecurepassword = ValueNotifier<bool>(true);
 
   FocusNode EmailNode = FocusNode();
   FocusNode PasswordNode = FocusNode();
-
   @override
   Widget build(BuildContext context) {
     final authViewProvider = Provider.of<AuthViewModel>(context);
@@ -76,8 +75,8 @@ class _LoginScreenState extends State<Login_Screen> {
               }),
           Center(
               child: RoundButton(
-            loading: authViewProvider.loading,
-            title: 'Login',
+            loading: authViewProvider.signuploading,
+            title: 'Sign up',
             onTap: () {
               if (emailcontroller.text.isEmpty) {
                 Utils.flutterErrorMessage('Please enter email', context);
@@ -87,24 +86,21 @@ class _LoginScreenState extends State<Login_Screen> {
                 Utils.flutterErrorMessage('Please 6 digits password', context);
               } else {
                 Map data = {
-                  'email': emailcontroller.text.toString(),
+                  'rmail': emailcontroller.text.toString(),
                   'password': passwordController.text.toString()
                 };
-                authViewProvider.loginApi(data, context);
+                authViewProvider.signUpApi(data, context);
                 print('api hit');
               }
               //  Utils.toastMessage('no Internet connection');
               // Navigator.pushNamed(context, RoutesName.home);
             },
           )),
-          const SizedBox(
-            height: 20,
-          ),
           InkWell(
               onTap: () {
-                Navigator.pushNamed(context, RoutesName.signup);
+                Navigator.pushNamed(context, RoutesName.login);
               },
-              child: const Text('Dont have an account? Sign Up'))
+              child: const Text('Already have an account? Log In'))
         ],
       ),
     ));
